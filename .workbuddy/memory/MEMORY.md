@@ -62,6 +62,29 @@
 - **构建命令**: 需先激活VS DevShell，再cmake -B build -G Ninja -DCMAKE_PREFIX_PATH="E:\Qt\5.15.2\msvc2019_64"
 - **filter_sample编译验证通过**: 生成40,960字节的DLL
 
+## M1里程碑完成（2026年4月3日）
+- **目标**: 环境验证
+- **成果**: Qt 5.15.2 + VS2026环境验证通过
+- **验证方式**: samplefilterdoc示例插件编译成功（40,960字节DLL）
+- **关键技术**: Ninja生成器适配VS2026，Qt MOC正常工作
+
+## M2里程碑完成（2026年4月3日）
+- **目标**: 创建插件骨架
+- **成果**: filter_normal_enhance插件骨架完整创建
+- **交付物**:
+  1. `filter_normal_enhance.h` - 使用MeshLab 2025.07的FilterPlugin API
+  2. `filter_normal_enhance.cpp` - 实现四个法向量增强功能
+  3. `CMakeLists.txt` - 基于samplefilterdoc模板
+- **集成步骤**:
+  1. 插件放置在`src/meshlabplugins/filter_normal_enhance/`
+  2. 主CMakeLists.txt添加插件到MESHLAB_PLUGINS列表
+  3. CMake配置成功，插件被识别
+  4. Qt MOC自动生成目录已创建
+- **技术特点**:
+  - 使用MeshLab 2025.07新API（FilterPlugin接口）
+  - 实现四个核心功能：法向量平滑、一致性检查、重新计算、角度阈值
+  - 构建系统已正确集成，目标`filter_normal_enhance`已定义
+
 ## 技术特点
 - 基于Qt的跨平台GUI
 - OpenGL渲染引擎，支持GLSL着色器
